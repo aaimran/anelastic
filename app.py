@@ -335,10 +335,6 @@ def main() -> None:
     all_infos, stations = build_index(data_dir)
     by_station = group_by_station(all_infos)
 
-    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-    server = app.server 
-
-
     initial_station = stations[0] if stations else ""
     initial_infos = by_station.get(initial_station, [])
     initial_selected_infos = [initial_infos[0]] if initial_infos else []
@@ -686,6 +682,9 @@ def main() -> None:
 
     app.run(host=host, port=port, debug=args.debug)
 
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+server = app.server 
+    
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)
