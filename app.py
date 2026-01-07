@@ -336,6 +336,8 @@ def main() -> None:
     by_station = group_by_station(all_infos)
 
     app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    server = app.server 
+
 
     initial_station = stations[0] if stations else ""
     initial_infos = by_station.get(initial_station, [])
